@@ -20,7 +20,7 @@ jobs:
       run: bash sourcemod/tools/checkout-deps.sh
     
     - name: Configure
-      run: CC=clang CXX=clang++ python configure.py --enable-optimize --hl2sdk-root=$GITHUB_WORKSPACE --mms-path='$GITHUB_WORKSPACE/mmsource-1.10/' --sm-path='$GITHUB_WORKSPACE./sourcemod/'
+      run: CC=clang CXX=clang++ python configure.py --enable-optimize --hl2sdk-root='./' --mms-path='./mmsource-1.10/' --sm-path='./sourcemod/'
     
     - name: Build
       run: ambuild
