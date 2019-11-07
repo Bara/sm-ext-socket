@@ -21,8 +21,8 @@ jobs:
 
     - name: Create build dir
       run: |
-        - mkdir build
-        - cd build
+        mkdir build
+        cd build
     
     - name: Configure
       run: CC=clang CXX=clang++ python ../configure.py --enable-optimize --hl2sdk-root='../..' --mms-path='../../mmsource-1.10/' --sm-path='../../sourcemod/'
