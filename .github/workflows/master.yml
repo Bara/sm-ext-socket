@@ -14,13 +14,18 @@ jobs:
       run: sudo apt install -y libboost-dev
 
     - name: Clone sourcemod
-      run: git clone --recursive https://github.com/alliedmodders/sourcemod
+      run: |
+        mkdir -p alliedmodders
+        cd alliedmodders
+        git clone --recursive https://github.com/alliedmodders/sourcemod
 
     - name: Execute checkout-deps.sh
       run: bash sourcemod/tools/checkout-deps.sh
     
     - name: Configure
-      run: CC=clang CXX=clang++ python configure.py --enable-optimize --hl2sdk-root='./' --mms-path='./mmsource-1.10/' --sm-path='./sourcemod/'
+      run: |
+        cd ..
+        CC=clang CXX=clang++ python configure.py --enable-optimize --hl2sdk-root='alliedmodders/' --mms-path='alliedmodders/mmsource-1.10/' --sm-path='alliedmodders/sourcemod/'
     
     - name: Build
       run: ambuild
