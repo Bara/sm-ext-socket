@@ -18,14 +18,9 @@ jobs:
 
     - name: Execute checkout-deps.sh
       run: bash sourcemod/tools/checkout-deps.sh
-
-    - name: Create build dir
-      run: |
-        mkdir build
-        cd build
     
     - name: Configure
-      run: CC=clang CXX=clang++ python ../configure.py --enable-optimize --hl2sdk-root='../..' --mms-path='../../mmsource-1.10/' --sm-path='../../sourcemod/'
+      run: CC=clang CXX=clang++ python configure.py --enable-optimize --hl2sdk-root=$GITHUB_WORKSPACE --mms-path='$GITHUB_WORKSPACE/mmsource-1.10/' --sm-path='$GITHUB_WORKSPACE./sourcemod/'
     
     - name: Build
       run: ambuild
