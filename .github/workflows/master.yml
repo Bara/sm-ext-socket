@@ -1,0 +1,31 @@
+name: Socket CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: Install boost
+      run: apt install -y libboost-dev
+
+    - name: Clone sourcemod
+      run: git clone --recursive https://github.com/alliedmodders/sourcemod
+
+    - name: Execute checkout-deps.sh
+      run: bash sourcemod/tools/checkout-deps.sh
+
+    - name: Create build dir
+      run: |
+        - mkdir build
+        - cd build
+    
+    - name: Configure
+      run: CC=clang CXX=clang++ python ../configure.py --enable-optimize --hl2sdk-root='../..' --mms-path='../../mmsource-1.10/' --sm-path='../../sourcemod/'
+    
+    - name: Build
+      run: ambuild
