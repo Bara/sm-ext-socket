@@ -20,7 +20,9 @@ jobs:
         git clone --recursive https://github.com/alliedmodders/sourcemod
 
     - name: Execute checkout-deps.sh
-      run: bash alliedmodders/sourcemod/tools/checkout-deps.sh
+      run: |
+        cd alliedmodders
+        bash sourcemod/tools/checkout-deps.sh
     
     - name: Configure
       run: |
